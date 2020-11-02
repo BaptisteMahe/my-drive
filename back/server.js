@@ -1,12 +1,10 @@
-var http = require('http');
-var formidable = require('formidable');
-var fs = require('fs');
-var express = require('express');
+let formidable = require('formidable');
+let fs = require('fs');
+let express = require('express');
 
 const PORT = 3000;
 
-var app = express();
-var files = fs.readdirSync('./drive');
+let app = express();
 
 app.get('/test', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -17,18 +15,22 @@ app.get('/test', (req, res) => {
   return res.end();
 });
 
-app.post('/fileupload', (req, res) => {
-  var form = new formidable.IncomingForm();
+app.post('/fileUpload', (req, res) => {
+  let form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
-    var oldpath = files.filetoupload.path;
-    var newpath = './drive/' + files.filetoupload.name;
-    // console.log(files);
+    let oldpath = files.filetoupload.path;
+    let newpath = './drive/' + files.filetoupload.name;
     fs.copyFile(oldpath, newpath, function (err) {
       if (err) throw err;
-      res.send('File uploaded and moved!');
+      res.redirect('back');
       res.end();
     });
   });
+});
+
+app.get('/allFiles', (req, res) => {
+  let files = fs.readdirSync('./drive');
+  res.send(files);
 });
 
 app.listen(PORT, () => {

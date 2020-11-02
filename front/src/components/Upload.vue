@@ -1,7 +1,7 @@
 <template>
   <form
     class="upload-form"
-    action="http://localhost:3000/fileupload"
+    action="http://localhost:3000/fileUpload"
     method="post"
     enctype="multipart/form-data"
   >
