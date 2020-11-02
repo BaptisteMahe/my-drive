@@ -21,8 +21,16 @@ app.get('/fileArray', (req, res) => {
 });
 
 app.get('/fileDownload', (req, res) => {
-  res.download(__dirname + '\\drive\\' + req.query.fileName, req.query.fileName, error => {
-    if (error) console.error(error);
+  res.download(__dirname + '/drive/' + req.query.fileName, req.query.fileName, error => {
+    if (error) throw error;
+  });
+});
+
+app.delete('/fileDelete', (req, res) => {
+  console.log('delete ' + req.query.fileName);
+  fs.unlink(__dirname + '/drive/' + req.query.fileName, error => {
+    if (error) throw error;
+    res.end();
   });
 });
 
@@ -50,6 +58,6 @@ app.get('/test', (req, res) => {
 
 
 app.listen(PORT, (error) => {
-  if (error) console.error(error);
+  if (error) throw error;
   else console.log('Listening to port ' + PORT);
 });
