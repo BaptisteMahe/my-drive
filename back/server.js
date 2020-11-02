@@ -1,8 +1,10 @@
 var http = require('http');
 var formidable = require('formidable');
 var fs = require('fs');
-
 const PORT = 3000;
+
+var files = fs.readdirSync('./drive');
+
 
 http.createServer(function (req, res) {
   if (req.url == '/fileupload') {
