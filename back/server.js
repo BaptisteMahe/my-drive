@@ -6,6 +6,14 @@ const PORT = 3000;
 
 let app = express();
 
+//CORS Middleware
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
 app.get('/test', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
@@ -28,7 +36,7 @@ app.post('/fileUpload', (req, res) => {
   });
 });
 
-app.get('/allFiles', (req, res) => {
+app.get('/fileArray', (req, res) => {
   let files = fs.readdirSync('./drive');
   res.send(files);
 });

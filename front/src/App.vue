@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import File from "./components/File";
 import Upload from "./components/Upload";
 
@@ -21,14 +22,16 @@ export default {
   },
   data() {
     return {
-      fileArray: [
-        "doc.txt",
-        "lol.pdf",
-        "attention.exe",
-        "object.json",
-        "helloWorld.py",
-      ],
+      fileArray: [],
     };
+  },
+  mounted() {
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/fileArray",
+    }).then((result) => {
+      this.fileArray = result.data;
+    });
   },
 };
 </script>
