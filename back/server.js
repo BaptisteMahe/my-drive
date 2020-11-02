@@ -5,11 +5,11 @@ var fs = require('fs');
 http.createServer(function (req, res) {
   if (req.url == '/fileupload') {
     var form = new formidable.IncomingForm();
-    form.copyFile(req, function (err, fields, files) {
+    form.parse(req, function (err, fields, files) {
       var oldpath = files.filetoupload.path;
       var newpath = '.\\drive\\' + files.filetoupload.name;
       console.log(files);
-      fs.rename(oldpath, newpath, function (err) {
+      fs.copyFile(oldpath, newpath, function (err) {
         if (err) throw err;
         res.write('File uploaded and moved!');
         res.end();
