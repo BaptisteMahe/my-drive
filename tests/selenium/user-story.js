@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-const url = "url";
+const url = 'https://www.google.com';
 
 // On charge le webdriver
 const webdriver = require('selenium-webdriver');
@@ -13,7 +13,7 @@ describe('Le site fonctionne', () => {
     })
 
     test('premier test', async () => {
-        // Contenu du test
+        await browser.get(url)
     });
 
     test('second test', async () => {
