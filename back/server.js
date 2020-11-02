@@ -2,12 +2,14 @@ var http = require('http');
 var formidable = require('formidable');
 var fs = require('fs');
 
+const PORT = 3000;
+
 http.createServer(function (req, res) {
   if (req.url == '/fileupload') {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
       var oldpath = files.filetoupload.path;
-      var newpath = '.\\drive\\' + files.filetoupload.name;
+      var newpath = './drive/' + files.filetoupload.name;
       console.log(files);
       fs.copyFile(oldpath, newpath, function (err) {
         if (err) throw err;
@@ -23,4 +25,6 @@ http.createServer(function (req, res) {
     res.write('</form>');
     return res.end();
   }
-}).listen(8080);
+}).listen(PORT);
+
+console.log('Listening to port ' + PORT);
