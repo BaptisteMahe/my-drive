@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-const url = 'https://www.google.com';
+const url = 'https://francoisbrucker.github.io/cours_informatique/3A/dfs_methode_de_developpement.html';
 
 // On charge le webdriver
 const webdriver = require('selenium-webdriver');
@@ -12,12 +12,17 @@ describe('Le site fonctionne', () => {
         browser =  new webdriver.Builder().forBrowser('firefox').build() // On ouvre le navigateur web
     })
 
-    test('premier test', async () => {
-        await browser.get(url)
-    });
+//    test('titre', async () => {
+//        await browser.get(url)
+//        const title = await browser.getTitle()
+//        expect(title).toBe("Ovh Share")
+//    });
 
     test('second test', async () => {
-        // Contenu du test
+        await browser.get(url)
+        await browser.findElement(By.linkText("Tests Unitaires")).click()
+        const title = await browser.getTitle()
+        expect(title).toBe("Tests Unitaires")
     });
 
     afterEach(async () => { // Après chaque test...
