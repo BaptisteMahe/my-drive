@@ -1,6 +1,7 @@
 let formidable = require('formidable');
 let fs = require('fs');
 let express = require('express');
+const { dirname } = require('path');
 
 const PORT = 3000;
 
@@ -14,13 +15,15 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/test', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-  res.write('<input type="file" name="filetoupload"><br>');
-  res.write('<input type="submit">');
-  res.write('</form>');
-  return res.end();
+app.get('/fileArray', (req, res) => {
+  let files = fs.readdirSync('./drive');
+  res.send(files);
+});
+
+app.get('/fileDownload', (req, res) => {
+  res.download(__dirname + '\\drive\\' + req.query.fileName, req.query.fileName, error => {
+    if (error) console.error(error);
+  });
 });
 
 app.post('/fileUpload', (req, res) => {
@@ -36,11 +39,17 @@ app.post('/fileUpload', (req, res) => {
   });
 });
 
-app.get('/fileArray', (req, res) => {
-  let files = fs.readdirSync('./drive');
-  res.send(files);
+app.get('/test', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+  res.write('<input type="file" name="filetoupload"><br>');
+  res.write('<input type="submit">');
+  res.write('</form>');
+  return res.end();
 });
 
-app.listen(PORT, () => {
-  console.log('Listening to port ' + PORT);
+
+app.listen(PORT, (error) => {
+  if (error) console.error(error);
+  else console.log('Listening to port ' + PORT);
 });

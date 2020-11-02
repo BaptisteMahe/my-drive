@@ -1,14 +1,31 @@
 <template>
-  <div class="box">
+  <div class="box" @click="download()">
     <div class="title">{{ fileName }}</div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import fileDownload from "js-file-download";
+
 export default {
   name: "File",
   props: {
     fileName: String,
+  },
+  methods: {
+    download() {
+      axios({
+        method: "GET",
+        url: "http://localhost:3000/fileDownload",
+        params: {
+          fileName: this.fileName,
+        },
+        responseType: "blob",
+      }).then((response) => {
+        fileDownload(response.data, this.fileName);
+      });
+    },
   },
 };
 </script>
