@@ -2,8 +2,8 @@
   <div class="box">
     <div class="title">{{ fileName }}</div>
     <div class="file-actions">
-      <button class="action-button" @click="downloadFile()">download</button>
-      <button class="action-button" @click="deleteFile()">delete</button>
+      <span class="action-button" @click="downloadFile()">Download</span>
+      <span class="action-button" @click="deleteFile()">Delete</span>
     </div>
   </div>
 </template>
@@ -49,7 +49,6 @@ export default {
 .box {
   margin: 10px;
   width: 20%;
-  height: 10vh;
 
   border-style: solid;
   border-radius: 10px;
@@ -62,9 +61,26 @@ export default {
 
   background-color: white;
 }
-.action-button {
-  margin: 5px;
+
+.title {
+  padding: 5px 12px;
 }
+
+.action-button {
+  font-size: 0.7em;
+  margin: 10px;
+  display: inline-block;
+  cursor: pointer;
+  background: #eee;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+.action-button:hover {
+  background: blue;
+  color: white;
+}
+
 .box:hover {
   background-color: rgb(44, 62, 80, 0.1);
 }
