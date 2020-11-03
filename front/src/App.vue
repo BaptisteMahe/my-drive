@@ -111,11 +111,6 @@ body {
   animation: marquee 5s linear infinite;
 }
 
-.title-box .inner:first-child span {
-  animation-delay: 2.6s;
-  left: -100%;
-}
-
 @keyframes marquee {
   from {
     left: 100%;
@@ -126,28 +121,45 @@ body {
   }
 }
 
+.title-box .inner:first-child span {
+  animation-delay: 2.6s;
+  left: -100%;
+}
+
 .logo {
   max-height: 35vh;
 }
 
 .logo:hover {
-  -webkit-animation: spin 4s linear infinite;
-  -moz-animation: spin 4s linear infinite;
-  animation: spin 4s linear infinite;
+  -webkit-animation: spin 3s linear infinite;
+  -moz-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite;
 }
 
 @-moz-keyframes spin {
+  50% {
+    opacity: 0;
+  }
   100% {
+    opacity: 1;
     -moz-transform: rotate(360deg);
   }
 }
 @-webkit-keyframes spin {
+  50% {
+    opacity: 0;
+  }
   100% {
+    opacity: 1;
     -webkit-transform: rotate(360deg);
   }
 }
 @keyframes spin {
+  50% {
+    opacity: 0;
+  }
   100% {
+    opacity: 1;
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
