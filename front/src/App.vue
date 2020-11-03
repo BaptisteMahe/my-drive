@@ -75,6 +75,12 @@ body {
   min-height: 100vh;
 }
 
+@media screen and (max-width: 640px) {
+  .app-container {
+    margin: 0 !important;
+  }
+}
+
 .title-box {
   display: flex;
   justify-content: center;

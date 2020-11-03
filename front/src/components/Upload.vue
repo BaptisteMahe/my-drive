@@ -126,6 +126,7 @@ export default {
 .submit-button {
   background: blue;
   color: white;
+  cursor: pointer;
   border-radius: 0 5px 5px 0;
   padding: 24px;
 }
