@@ -6,11 +6,18 @@ const PORT = 3000;
 
 let app = express();
 
-app.use(function (req, res, next) {
+// CORS middleware
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
+});
+
+// Error middleware
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
 });
 
 app.get('/fileArray', (req, res) => {

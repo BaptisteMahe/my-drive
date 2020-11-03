@@ -1,6 +1,6 @@
 <template>
   <div class="drive-app">
-    <img alt="Logo" src="./assets/logo.png" />
+    <img class="logo" alt="Logo" src="./assets/logo.png" />
     <Upload />
     <div class="file-list" v-if="fileArray.length > 0">
       <File v-for="file in fileArray" :key="file" v-bind:fileName="file" />
@@ -45,6 +45,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.logo {
+  max-height: 50vh;
 }
 
 .file-list {
