@@ -1,22 +1,44 @@
 <template>
-  <form
-    class="upload-form"
-    action="http://localhost:3000/fileUpload"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    <input multiple type="file" name="filetoupload" ref="uploadInput" />
-    <input type="submit" />
+  <form class="upload-form">
+    <input
+      multiple
+      type="file"
+      name="filetoupload"
+      @change="onFilesChange($event)"
+    />
+    <button @click="uploadFiles()">Submit</button>
   </form>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Upload",
   data() {
     return {
       files: { length: 0 },
     };
+  },
+  methods: {
+    onFilesChange(event) {
+      this.files = event.target.files;
+    },
+    uploadFiles() {
+      let formData = new FormData();
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append(this.files[i].name, this.files[i]);
+      }
+      axios
+        .post("http://localhost:3000/fileUpload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          window.location.reload();
+        });
+    },
   },
 };
 </script>

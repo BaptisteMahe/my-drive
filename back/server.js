@@ -1,16 +1,14 @@
 let formidable = require('formidable');
 let fs = require('fs');
 let express = require('express');
-const { dirname } = require('path');
 
 const PORT = 3000;
 
 let app = express();
 
-//CORS Middleware
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT, DELETE");
+  res.header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
@@ -27,7 +25,6 @@ app.get('/fileDownload', (req, res) => {
 });
 
 app.delete('/fileDelete', (req, res) => {
-  console.log('delete ' + req.query.fileName);
   fs.unlink(__dirname + '/drive/' + req.query.fileName, error => {
     if (error) throw error;
     res.end();
@@ -36,14 +33,13 @@ app.delete('/fileDelete', (req, res) => {
 
 app.post('/fileUpload', (req, res) => {
   let form = new formidable.IncomingForm();
-  form.parse(req, function (err, fields, files) {
-    let oldpath = files.filetoupload.path;
-    let newpath = './drive/' + files.filetoupload.name;
-    fs.copyFile(oldpath, newpath, function (err) {
-      if (err) throw err;
-      res.redirect('back');
-      res.end();
+  form.parse(req, (err, fields, files) => {
+    Object.keys(files).forEach((key) => {
+      let oldpath = files[key].path;
+      let newpath = './drive/' + files[key].name;
+      fs.copyFileSync(oldpath, newpath);
     });
+    res.end();
   });
 });
 
