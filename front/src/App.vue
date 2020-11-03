@@ -11,10 +11,13 @@
       </div>
       <img class="logo" src="./assets/logo.png" />
       <Upload />
+      <h1>My Library</h1>
       <div class="file-list" v-if="fileArray.length > 0">
         <File v-for="file in fileArray" :key="file" v-bind:fileName="file" />
       </div>
-      <div v-else class="empty-file-list">There is no files in your drive</div>
+      <div v-else class="empty-file-list">
+        There is no files in your library
+      </div>
     </div>
   </div>
 </template>
@@ -62,18 +65,20 @@ body {
 .drive-app {
   min-height: 100vh;
   background-image: url("./assets/altocumulus.jpg");
+  background-size: cover;
 }
 
 .app-container {
   background-color: rgba(255, 255, 255, 0.8);
   margin: 0 20%;
-  padding-top: 2vh;
+  padding: 3vh 0 10vh;
   min-height: 100vh;
 }
 
 .title-box {
   display: flex;
   justify-content: center;
+  padding-bottom: 2vh;
 }
 
 .title-box .inner {
@@ -122,7 +127,7 @@ body {
 }
 
 .logo {
-  max-height: 30vh;
+  max-height: 35vh;
 }
 
 .file-list {
