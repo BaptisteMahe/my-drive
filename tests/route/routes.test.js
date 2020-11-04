@@ -11,16 +11,18 @@ describe('Route tests', () => {
     server = await app.listen(3000);
   });
 
-  afterAll(async () => {
-    await server.close();
+  test('The server allow CORS', (done) => {
+    request(app).get('/fileArray').then((response) => {
+      console.log(response.data);
+      const headers = response.headers;
+      expect(headers["access-control-allow-origin"]).toBe("*");
+      done();
+    });
   });
 
-
-  test('GET index.html', (done) => {
-    done();
-  });
-
-  test('GET 404', (done) => {
-    done();
+  test('The server allow CORS', async () => {
+    const response = await request(app).post('/fileArray');
+    const headers = response.headers;
+    expect(headers["access-control-allow-origin"]).toBe("*");
   });
 });
