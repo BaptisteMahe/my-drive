@@ -42,9 +42,12 @@ export default {
   mounted() {
     axios({
       method: "GET",
-      url: "http://localhost:3000/fileArray",
+      url: "http://localhost:3000/graphql/fileArray",
+      params: {
+        query: "{fileArray}",
+      },
     }).then((result) => {
-      this.fileArray = result.data;
+      this.fileArray = result.data.data.fileArray;
     });
   },
 };
