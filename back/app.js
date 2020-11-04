@@ -24,13 +24,13 @@ app.get('/fileArray', (req, res) => {
 });
 
 app.get('/fileDownload', (req, res) => {
-  res.download(__dirname + '/drive/' + req.query.fileName, req.query.fileName, error => {
+  res.download('./drive/' + req.query.fileName, req.query.fileName, error => {
     if (error) throw error;
   });
 });
 
 app.delete('/fileDelete', (req, res) => {
-  fs.unlink(__dirname + '/drive/' + req.query.fileName, error => {
+  fs.unlink('./drive/' + req.query.fileName, error => {
     if (error) throw error;
     res.end();
   });
