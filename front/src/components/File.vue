@@ -2,7 +2,9 @@
   <div class="box">
     <div class="title">{{ fileName }}</div>
     <div class="file-actions">
-      <span class="action-button download" @click="downloadFile()">Download</span>
+      <span class="action-button download" @click="downloadFile()"
+        >Download</span
+      >
       <span class="action-button delete" @click="deleteFile()">Delete</span>
     </div>
   </div>
@@ -60,6 +62,19 @@ export default {
   justify-content: space-around;
 
   background-color: white;
+
+  word-wrap: break-word;
+  overflow: auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .box {
+    width: 40%;
+  }
+
+  .title {
+    font-size: 0.8em;
+  }
 }
 
 .title {
