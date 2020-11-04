@@ -51,7 +51,7 @@ export default {
           formData.append(this.files[i].name, this.files[i]);
         }
         axios
-          .post("http://localhost:3000/fileUpload", formData, {
+          .post("http://node.persil.ovh1.ec-m.fr/fileUpload", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

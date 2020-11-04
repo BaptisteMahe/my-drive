@@ -21,7 +21,7 @@ export default {
     downloadFile() {
       axios({
         method: "GET",
-        url: "http://localhost:3000/fileDownload",
+        url: "http://node.persil.ovh1.ec-m.fr/fileDownload",
         params: {
           fileName: this.fileName,
         },
@@ -33,7 +33,7 @@ export default {
     deleteFile() {
       axios({
         method: "DELETE",
-        url: "http://localhost:3000/fileDelete",
+        url: "http://node.persil.ovh1.ec-m.fr/fileDelete",
         params: {
           fileName: this.fileName,
         },

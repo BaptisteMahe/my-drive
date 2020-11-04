@@ -42,7 +42,7 @@ export default {
   mounted() {
     axios({
       method: "GET",
-      url: "http://localhost:3000/graphql/fileArray",
+      url: "http://node.persil.ovh1.ec-m.fr/graphql/fileArray",
       params: {
         query: "{fileArray}",
       },
