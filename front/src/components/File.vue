@@ -2,8 +2,8 @@
   <div class="box">
     <div class="title">{{ fileName }}</div>
     <div class="file-actions">
-      <span class="action-button" @click="downloadFile()">Download</span>
-      <span class="action-button" @click="deleteFile()">Delete</span>
+      <span class="action-button download" @click="downloadFile()">Download</span>
+      <span class="action-button delete" @click="deleteFile()">Delete</span>
     </div>
   </div>
 </template>
