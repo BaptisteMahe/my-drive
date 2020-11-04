@@ -23,21 +23,18 @@ describe('OVHshare fonctionne', () => {
         expect(logo).toBeTruthy();
     });
 
-    test('Upload',async () => {
+    test('Upload and delete',async () => {
         await browser.get(url)
         const uploadElement = await browser.findElement(By.id('file'))
         await uploadElement.sendKeys("/home/rherbelleau/ovh_share/my-drive/tests/selenium/user_story_test.txt")
         await browser.findElement(By.css('.submit-button')).click()
-        const files= await browser.findElements(By.css(".title"))
-        var files_name = [];
-        for (var i of files) {
-            files_name.push(await i.getAttribute("innerText"))
+        const filesa= await browser.findElements(By.css(".title"))
+        var files_namea = [];
+        for (var i of filesa) {
+            files_namea.push(await i.getAttribute("innerText"))
         }
-        expect(files_name).toContain("user_story_test.txt")
-    })
+        expect(files_namea).toContain("user_story_test.txt")
 
-    test('Delete',async () => {
-        await browser.get(url)
         const box= await browser.findElements(By.css(".box"))
         for (var i of box) {
             if (await i.findElement(By.css(".title")).getAttribute("innerText") =="user_story_test.txt") {
