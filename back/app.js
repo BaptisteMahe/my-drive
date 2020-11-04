@@ -1,8 +1,10 @@
-let formidable = require('formidable');
-let fs = require('fs');
-let express = require('express');
+const formidable = require('formidable');
+const fs = require('fs');
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
 
-let app = express();
+const app = express();
 
 // CORS middleware
 app.use((req, res, next) => {
@@ -56,5 +58,21 @@ app.get('/test', (req, res) => {
   res.write('</form>');
   return res.end();
 });
+
+/*--------<GraphQL>--------*/
+let schema = buildSchema(`
+  type Query {
+    fileArray: [String]
+  }
+`);
+
+let root = { fileArray: () => fs.readdirSync('./drive') };
+
+app.use('/graphql/fileArray', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
+/*--------</GraphQL>--------*/
 
 module.exports = app;
