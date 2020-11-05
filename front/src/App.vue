@@ -151,7 +151,7 @@ body {
   }
   100% {
     opacity: 1;
-    -moz-transform: rotate(360deg);
+    -moz-transform: rotateY(360deg);
   }
 }
 @-webkit-keyframes spin {
@@ -160,7 +160,7 @@ body {
   }
   100% {
     opacity: 1;
-    -webkit-transform: rotate(360deg);
+    -webkit-transform: rotateY(360deg);
   }
 }
 @keyframes spin {
@@ -169,8 +169,8 @@ body {
   }
   100% {
     opacity: 1;
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
   }
 }
 
