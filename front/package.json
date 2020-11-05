@@ -1,10 +1,11 @@
 {
-  "name": "ovhshare",
+  "name": "OvhShare",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-and-deploy": "vue-cli-service build && tar -cf dist.tar dist",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
